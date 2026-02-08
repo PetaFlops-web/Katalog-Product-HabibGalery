@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Um_HABIB Galeri</title>
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/style/animations.css">
+    <link rel="stylesheet" href="assets/style/components.css">
+    <style>
+        :root {
+            --primary: #1F2C5C;
+            --secondary: #243B6B;
+            --accent: #F8C630;
+            --light: #F0F4F8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo/Brand -->
+                <div class="flex items-center space-x-2">
+                    <img src="assets/img/logo.png" alt="Logo" class="h-11">
+                </div>
+
+                <!-- Search + Notification -->
+                <div class="absolute left-1/3 transform -translate-x-1/2 flex items-center space-x-4">
+                    <div class="flex items-center group">
+                        <!-- Input Field Animasi -->
+                        <input type="text" id="searchInput" placeholder="Cari..." class="search-input pl-10 pr-4 py-2 w-64 border border-gray-300 rounded-full 
+                          focus:outline-none focus:border-[#1F2C5C] focus:w-80
+                          transition-all duration-500 ease-in-out
+                          group-hover:border-[#1F2C5C] group-hover:shadow-md">
+
+                        <!-- Search Button Animasi -->
+                        <button id="searchButton" class="relative bg-[#243B6B] px-8 py-5 rounded-full ml-[-65px]
+                           transition-all duration-500 ease-in-out
+                           hover:bg-[#1F2C5C] hover:scale-105 hover:shadow-lg
+                           active:scale-95 active:bg-[#1F2C5C]
+                           group-focus-within:bg-[#1F2C5C]
+                           focus:outline-none focus:ring-2 focus:ring-[#1F2C5C] focus:ring-offset-2">
+
+                            <!-- Search Icon Animasi -->
+                            <svg class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                            w-[30px] h-[30px] transition-all duration-300
+                            group-hover:scale-110 group-hover:rotate-12
+                            group-focus-within:rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                <circle cx="21" cy="21" r="17" fill="none" stroke="#FFFFFF" stroke-width="4"
+                                    stroke-linejoin="round" class="transition-all duration-300
+                                   group-hover:stroke-white
+                                   group-focus-within:stroke-white" />
+                                <path d="M26.657 14.343A7.975 7.975 0 0 0 21 12a7.975 7.975 0 0 0-5.657 2.343"
+                                    fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" class="transition-all duration-300
+                                 group-hover:stroke-white
+                                 group-focus-within:stroke-white" />
+                                <path d="M33.879 33.879l8.485 8.485" fill="none" stroke="#FFFFFF" stroke-width="4"
+                                    stroke-linecap="round" class="transition-all duration-500
+                                 group-hover:stroke-white group-hover:translate-x-1
+                                 group-focus-within:stroke-white group-focus-within:translate-x-2" />
+                            </svg>
+
+                            <span class="sr-only">Cari</span>
+                        </button>
+                    </div>
+
+                    <!-- Notification Icon -->
+                    <button id="notif-button" class="relative p-2 text-gray-600  
+         transition-all duration-300 ease-in-out
+         hover:scale-110 hover:rotate-12">
+                        <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="#243B6B"
+                                d="M12 22a2.02 2.02 0 0 1-2.01-2h4a2.02 2.02 0 0 1-.149.78a2.043 2.043 0 0 1-1.44 1.18h-.046A1.944 1.944 0 0 1 12 22Zm8-3H4v-2l2-1v-5.5a8.065 8.065 0 0 1 .924-4.06A4.654 4.654 0 0 1 10 4.18V2h4v2.18c2.579.614 4 2.858 4 6.32V16l2 1v2Zm1.97-9h-2a8.672 8.672 0 0 0-3.39-6.57L18 2a9.9 9.9 0 0 1 2.825 3.486A11.52 11.52 0 0 1 21.97 10ZM4 10H2c.07-1.567.46-3.103 1.145-4.514A9.9 9.9 0 0 1 5.97 2l1.42 1.43A8.67 8.67 0 0 0 4 10Z" />
+                        </svg>
+                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-[#F5F5DC] text-xs 
+           rounded-full flex items-center justify-center">
+                            1
+                        </span>
+                    </button>
+
+                    <!-- CART / CHECKOUT BUTTON -->
+                    <button id="cart-checkout-btn"
+                        class="relative flex items-center gap-2 px-3 py-2 rounded-full border border-gray-200 text-xs text-gray-700 hover:border-[#243B6B] hover:text-[#243B6B] transition">
+                        <i class="fa-solid fa-bag-shopping text-sm text-[#243B6B]"></i>
+                        <span>Keranjang</span>
+                        <span id="cart-count-badge"
+                            class="ml-1 px-1.5 py-0.5 rounded-full bg-[#243B6B] text-[10px] text-white">
+                            0
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation + Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center space-x-1">
+                        <a href="index.html"
+                            class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-[#1F2C5C] transition-colors">
+                            Home
+                        </a>
+                        <a href="about.html"
+                            class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-[#1F2C5C] transition-colors">
+                            About
+                        </a>
+                        <a href="product.html"
+                            class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-[#1F2C5C] transition-colors">
+                            Product
+                        </a>
+                        <a href="service.html"
+                            class="nav-link px-4 py-2 text-gray-700 font-medium hover:text-[#1F2C5C] transition-colors">
+                            Service
+                        </a>
+                    </div>
+
+                    <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile menu -->
+                <div id="mobile-menu"
+                    class="mobile-menu md:hidden hidden py-4 border-t border-gray-200 absolute top-full left-0 w-full bg-white z-50">
+                    <div class="container mx-auto px-4 flex flex-col space-y-4">
+                        <a href="#"
+                            class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors py-2">
+                            Home
+                        </a>
+                        <a href="#"
+                            class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors py-2">
+                            About
+                        </a>
+                        <a href="#"
+                            class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors py-2">
+                            Product
+                        </a>
+                        <a href="#"
+                            class="nav-link text-gray-700 font-medium hover:text-blue-600 transition-colors py-2">
+                            Service
+                        </a>
+
+                        <div class="flex items-center group mt-4">
+                            <input type="text" placeholder="Cari..." class="search-input pl-10 pr-4 py-2 w-full border border-gray-300 rounded-full 
+                              focus:outline-none focus:border-blue-500
+                              transition-all duration-300">
+                            <div class="relative ml-[-50px]">
+                                <svg class="w-6 h-6 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 48 48">
+                                    <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4">
+                                        <path
+                                            d="M21 38c9.389 0 17-7.611 17-17S30.389 4 21 4S4 11.611 4 21s7.611 17 17 17Z" />
+                                        <path stroke-linecap="round"
+                                            d="M26.657 14.343A7.975 7.975 0 0 0 21 12a7.975 7.975 0 0 0-5.657 2.343m17.879 18.879l8.485 8.485" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-4">
+                            <div class="flex space-x-6">
+                                <button class="relative text-gray-600 hover:text-blue-600 transition-colors">
+                                    <i class="far fa-bell text-xl"></i>
+                                    <span
+                                        class="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                                        3
+                                    </span>
+                                </button>
+
+                                <button class="text-gray-600 hover:text-blue-600 transition-colors">
+                                    <i class="far fa-user text-xl"></i>
+                                </button>
+
+                                <button class="text-gray-600 hover:text-blue-600 transition-colors">
+                                    <i class="fas fa-cog text-xl"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></div>
+                                <span class="text-gray-700 font-medium">Pengguna</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative w-full  flex items-center justify-center px-5 py-20 overflow-hidden">
+        <div class="relative z-10 text-center max-w-4xl">
+            <div
+                class="w-32 h-1.5 bg-gradient-to-r from-[#1F2C5C] to-[#243B6B] mx-auto my-8 rounded-full opacity-0 animate-expandLine">
+            </div>
+
+            <h3 class="text-xl md:text-2xl text-gray-600 font-medium mb-8 opacity-0 animate-fadeIn">
+                Mitra Layanan Tapis & Jahit Terpercaya Anda Sejak 2014
+            </h3>
+
+            <p class="text-lg text-gray-500 max-w-2xl mx-auto mb-10 opacity-0 animate-fadeIn">
+                Kami memadukan keahlian tradisional dengan presisi modern untuk menghadirkan hasil jahitan yang
+                sempurna. Setiap karya mencerminkan dedikasi kami terhadap kualitas dan detail.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-fadeIn">
+                <a href="#services"
+                    class="btn-primary text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/20">
+                    <i class="fas fa-sparkles mr-2"></i> Jelajahi Layanan Kami
+                </a>
+                <a href="#contact"
+                    class="glass-card text-[#1F2C5C] font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 hover:shadow-lg">
+                    <i class="fas fa-phone-alt mr-2"></i> Hubungi Kami
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 opacity-0 animate-fadeIn">
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-bold text-[#1F2C5C]">10+</div>
+                    <div class="text-sm text-gray-500 mt-1">Tahun Pengalaman</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-bold text-[#1F2C5C]">5000+</div>
+                    <div class="text-sm text-gray-500 mt-1">Proyek Selesai</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-bold text-[#1F2C5C]">98%</div>
+                    <div class="text-sm text-gray-500 mt-1">Klien Puas</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="text-3xl font-bold text-[#1F2C5C]">50+</div>
+                    <div class="text-sm text-gray-500 mt-1">Desain Tercipta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES CARDS - ENHANCED -->
+    <section id="services" class="max-w-7xl mx-auto px-5 py-16">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Layanan <span class="text-[#1F2C5C]">Premium</span> Kami
+            </h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Setiap layanan dikerjakan dengan ketelitian tinggi untuk
+                memenuhi standar kualitas terbaik Anda.</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-[#1F2C5C] to-[#243B6B] mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+            <!-- CARD 1 -->
+            <div class="service-card group rounded-2xl p-8 text-white relative">
+                <div class="absolute top-6 right-6 text-6xl opacity-10">
+                    <i class="fa-solid fa-scissors"></i>
+                </div>
+                <div class="text-5xl mb-6 service-icon">
+                    <i class="fa-solid fa-scissors"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Kursus Jahit Profesional</h3>
+                <p class="text-white/80 mb-6 leading-relaxed">
+                    Kursus menjahit lengkap dengan praktik langsung dan bimbingan instruktur berpengalaman. Mulai dari
+                    dasar hingga teknik tingkat lanjut.
+                </p>
+                <ul class="space-y-2 mb-8">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Level Pemula
+                        hingga Mahir</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Mentoring
+                        Satu per Satu</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Sertifikat
+                        Disediakan</li>
+                </ul>
+                <button onclick="openForm()"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-white py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 group-hover:bg-white/20">
+                    <span class="flex items-center justify-center">
+                        Daftar Sekarang <i
+                            class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </button>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="service-card group rounded-2xl p-8 text-white relative">
+                <div class="absolute top-6 right-6 text-6xl opacity-10">
+                    <i class="fa-solid fa-shirt"></i>
+                </div>
+                <div class="text-5xl mb-6 service-icon">
+                    <i class="fa-solid fa-shirt"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Jahit Custom</h3>
+                <p class="text-white/80 mb-6 leading-relaxed">
+                    Pakaian custom yang dijahit dengan detail dan ukuran presisi. Desain personal sesuai karakter dan
+                    kebutuhan Anda.
+                </p>
+                <ul class="space-y-2 mb-8">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Jaminan Pas
+                        Sempurna</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Kain Premium
+                        Berkualitas</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Beberapa Kali
+                        Fitting</li>
+                </ul>
+                <button onclick="openForm()"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-white py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 group-hover:bg-white/20">
+                    <span class="flex items-center justify-center">
+                        Jadwalkan Konsultasi <i
+                            class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </button>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="service-card group rounded-2xl p-8 text-white relative">
+                <div class="absolute top-6 right-6 text-6xl opacity-10">
+                    <i class="fa-solid fa-person-dress"></i>
+                </div>
+                <div class="text-5xl mb-6 service-icon">
+                    <i class="fa-solid fa-person-dress"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Desain Hijab Eksklusif</h3>
+                <p class="text-white/80 mb-6 leading-relaxed">
+                    Desain hijab eksklusif yang memadukan sentuhan tradisional dan gaya modern. Pola khusus dan tampilan
+                    elegan untuk setiap kesempatan.
+                </p>
+                <ul class="space-y-2 mb-8">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Riset Tren
+                        Fashion</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Bordir
+                        Kustom</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-[#F8C630] mr-3"></i> Material
+                        Mewah</li>
+                </ul>
+                <button onclick="openForm()"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 text-white py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 group-hover:bg-white/20">
+                    <span class="flex items-center justify-center">
+                        Mulai Sesi Desain <i
+                            class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="max-w-6xl mx-auto px-5 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <img src="assets/img/ilustrasion-tapis.jpeg" alt="Tentang Layanan Kami"
+                    class="rounded-3xl shadow-2xl w-full object-cover aspect-square">
+                <div
+                    class="absolute -bottom-6 -right-6 w-64 h-64 bg-gradient-to-br from-[#1F2C5C] to-[#243B6B] rounded-3xl -z-10">
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                    Mengapa Memilih <span class="text-[#1F2C5C]">Layanan Kami</span>?
+                </h2>
+                <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                    Dengan pengalaman lebih dari satu dekade, kami telah menyempurnakan keahlian dalam jahit-menjahit
+                    dan kerajinan tapis. Tim kami memadukan teknik tradisional dengan presisi modern untuk hasil yang
+                    tidak tertandingi.
+                </p>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#1F2C5C] to-[#243B6B] rounded-xl flex items-center justify-center">
+                            <i class="fas fa-award text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Kualitas Berstandar Penghargaan</h4>
+                            <p class="text-gray-500">Diakui karena keunggulan dan ketelitian dalam kerajinan tradisional
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#1F2C5C] to-[#243B6B] rounded-xl flex items-center justify-center">
+                            <i class="fas fa-clock text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Pengerjaan Tepat Waktu</h4>
+                            <p class="text-gray-500">Kami menghargai waktu Anda dengan komitmen penyelesaian sesuai
+                                jadwal</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#1F2C5C] to-[#243B6B] rounded-xl flex items-center justify-center">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-lg">Layanan yang Dipersonalisasi</h4>
+                            <p class="text-gray-500">Konsultasi langsung untuk menyesuaikan setiap detail dengan
+                                kebutuhan Anda</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DELIVERY SECTION - ENHANCED -->
+    <section class="max-w-5xl mx-auto px-5 py-16">
+        <div class="glass-card rounded-3xl p-12 relative overflow-hidden">
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#1F2C5C]/5 to-[#243B6B]/5 rounded-full -translate-y-32 translate-x-32">
+            </div>
+
+            <div class="relative z-10 text-center">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[#1F2C5C] to-[#243B6B] rounded-2xl mb-8">
+                    <i class="fas fa-truck text-3xl text-white"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Layanan Antar Jemput & Pengembalian Tanpa Ribet</h2>
+                <p class="text-gray-600 leading-relaxed text-lg max-w-3xl mx-auto">
+                    Kami menangani seluruh proses mulai dari penjemputan hingga pengantaran kembali. Tim logistik kami
+                    memastikan barang Anda ditangani dengan aman dan profesional. Nikmati layanan antar jemput sampai
+                    depan pintu tanpa repot.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#1F2C5C]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-map-marker-alt text-[#1F2C5C] text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Penjemputan ke Lokasi Anda</h4>
+                        <p class="text-gray-500 text-sm">Kami ambil langsung dari alamat Anda</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#1F2C5C]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-[#1F2C5C] text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Penanganan Aman</h4>
+                        <p class="text-gray-500 text-sm">Pengemasan dan pengiriman yang profesional</p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-[#1F2C5C]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-history text-[#1F2C5C] text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Pengembalian Tepat Waktu</h4>
+                        <p class="text-gray-500 text-sm">Komitmen jadwal pengembalian yang jelas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL - ENHANCED -->
+    <div id="orderForm"
+        class="hidden fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center z-50 p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative animate-scaleIn overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#1F2C5C] to-[#243B6B]"></div>
+
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Pesan Layanan Anda</h2>
+                        <p class="text-gray-500 text-sm">Isi formulir di bawah ini, kami akan segera menghubungi Anda
+                        </p>
+                    </div>
+                    <button onclick="closeForm()"
+                        class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-times text-gray-600"></i>
+                    </button>
+                </div>
+
+                <form class="space-y-6 form-service" id="form-service">
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="text" id="name"
+                                class="w-full p-4 pl-12 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#1F2C5C] focus:ring-2 focus:ring-[#1F2C5C]/20 transition-all duration-300"
+                                placeholder="Masukkan nama lengkap Anda">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-2">Nomor WhatsApp</label>
+                        <div class="relative">
+                            <i
+                                class="fab fa-whatsapp absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                            <input type="tel" id="phone"
+                                class="w-full p-4 pl-12 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#1F2C5C] focus:ring-2 focus:ring-[#1F2C5C]/20 transition-all duration-300"
+                                placeholder="+62 812-3456-7890">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-2">Layanan yang Dibutuhkan</label>
+                        <div class="relative">
+                            <i
+                                class="fas fa-concierge-bell absolute left-4 top-6 transform -translate-y-1/2 text-gray-400"></i>
+                            <select id="optionServices"
+                                class="w-full p-4 pl-12 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#1F2C5C] focus:ring-2 focus:ring-[#1F2C5C]/20 transition-all duration-300 appearance-none">
+                                <option>Pilih layanan</option>
+                                <option>Kursus Menjahit</option>
+                                <option>Jahit Custom</option>
+                                <option>Desain Hijab</option>
+                                <option>Layanan Lainnya</option>
+                            </select>
+                            <i
+                                class="fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-gray-700 mb-2">Detail Tambahan</label>
+                        <textarea rows="4" id="message"
+                            class="w-full p-4 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#1F2C5C] focus:ring-2 focus:ring-[#1F2C5C]/20 transition-all duration-300 resize-none"
+                            placeholder="Ceritakan kebutuhan atau permintaan khusus Anda di sini..."></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-[#1F2C5C] to-[#243B6B] text-white font-semibold py-4 rounded-xl hover:shadow-lg hover:shadow-blue-900/30 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0">
+                        <i class="fas fa-paper-plane mr-2"></i> Kirim Permintaan Pemesanan
+                    </button>
+                </form>
+
+                <p class="text-center text-gray-400 text-sm mt-6">
+                    <i class="fas fa-lock mr-2"></i> Data yang Anda kirimkan aman dan bersifat rahasia.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">
+                        <span class="text-[#243B6B]">Um_Habib</span><span class="pl-3 text-[#F5F5DC]">By nana
+                            Galery</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6">
+                        Temukan gaya fashion terbaru Anda dengan koleksi terkini kami. Kualitas terbaik dengan harga
+                        terjangkau.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-primary flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-primary flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-primary flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-[#1F2C5C]">Tautan Cepat</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-300 hover:text-[#1F2C5C] transition">Home</a></li>
+                        <li><a href="product.html" class="text-gray-300 hover:text-[#1F2C5C] transition">Koleksi</a>
+                        </li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-[#1F2C5C] transition">Tentang Kami</a>
+                        </li>
+                        <li><a href="service.html" class="text-gray-300 hover:text-[#1F2C5C] transition">service</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-[#1F2C5C]">Layanan Pelanggan</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-[#1F2C5C] transition">Bantuan & FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-[#1F2C5C] transition">Pengiriman</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-[#1F2C5C] transition">Pengembalian</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-[#1F2C5C]">Kontak Kami</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-300">Jl. NotNot No. 123, Jakarta</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-300">+62 1234-5678</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-300">Habib Umar@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2023 FashionStore. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- NOTIFICATION PANEL -->
+    <div id="notif-panel" class="hidden fixed top-16 right-4 w-80 bg-white rounded-2xl shadow-xl border border-gray-100
+         origin-top-right transform opacity-0 -translate-y-2
+         transition-all duration-200 ease-out z-[70]">
+        <div class="p-4 border-b border-gray-100 flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-[#243B6B]">Notifikasi</h3>
+            <button type="button" class="text-[11px] text-gray-400 hover:text-[#243B6B] transition"
+                id="notif-mark-read">
+                Tandai semua terbaca
+            </button>
+        </div>
+
+        <div class="max-h-72 overflow-y-auto">
+            <div class="px-4 py-3 flex gap-3 hover:bg-gray-50 cursor-pointer">
+                <div
+                    class="w-9 h-9 rounded-full bg-[#243B6B]/10 flex items-center justify-center text-xs font-bold text-[#243B6B]">
+                    FS
+                </div>
+                <div class="flex-1">
+                    <p class="text-xs font-medium text-[#243B6B]">
+                        Promo khusus outer tapis
+                    </p>
+                    <p class="text-[11px] text-gray-500">
+                        Diskon 15% untuk koleksi Outer Tapis Modern sampai malam ini.
+                    </p>
+                    <span class="text-[10px] text-gray-400">2 jam yang lalu</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 border-t border-gray-100 text-center">
+            <button type="button" class="text-[11px] font-medium text-[#243B6B] hover:text-[#1F2C5C] hover:underline">
+                Lihat semua notifikasi
+            </button>
+        </div>
+    </div>
+    <script src="assets/js/services.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

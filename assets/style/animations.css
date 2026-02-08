@@ -1,0 +1,181 @@
+@keyframes slideDown {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeLeft {
+    0% {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeRight {
+    0% {
+        transform: translateX(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes expandLine {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 120px;
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes dotsRevealOnce {
+    0% {
+        transform: translate(-50%, -50%) rotate(35deg) scale(0.92);
+        opacity: 0;
+        filter: blur(6px);
+    }
+
+    55% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg) scale(1);
+        opacity: 0.9;
+        filter: blur(0px);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(40, 40);
+        opacity: 0;
+    }
+}
+
+.dots-reveal-once {
+    animation: dotsRevealOnce 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity, filter;
+}
+
+.animate-slide-down {
+    animation: slideDown 0.7s ease forwards;
+}
+
+.animate-fade-left {
+    animation: fadeLeft 0.7s ease forwards;
+}
+
+.animate-fade-right {
+    animation: fadeRight 0.7s ease forwards;
+}
+
+.stagger-delay-1 {
+    animation-delay: 0.1s;
+}
+
+.stagger-delay-2 {
+    animation-delay: 0.2s;
+}
+
+.stagger-delay-3 {
+    animation-delay: 0.3s;
+}
+
+.stagger-delay-4 {
+    animation-delay: 0.4s;
+}
+
+.stagger-delay-5 {
+    animation-delay: 0.5s;
+}
+
+.animate-slideDown {
+    animation: slideDown 1s ease forwards;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.animate-expandLine {
+    animation: expandLine 1.5s ease forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.3s ease forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
